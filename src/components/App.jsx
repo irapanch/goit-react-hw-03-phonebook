@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import contactsData from '../assets/contacts.json';
 import ContactForm from './ContactForm';
 import Filter from './Filter';
 import { ContactList } from './ContactList';
@@ -6,14 +7,27 @@ import { nanoid } from 'nanoid';
 
 class App extends Component {
   state = {
-    contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    ],
+    contacts: contactsData,
     filter: '',
   };
+  //++++++++++++++++++
+  componentDidMount() {
+    console.log('MOUNT');
+    const items = JSON.parse(window.localStorage.getItem('CONTACTS'));
+    if (items?.length) {
+      this.setState({ contacts: items });
+    }
+    console.log(items);
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      window.localStorage.setItem(
+        'CONTACTS',
+        JSON.stringify(this.state.contacts)
+      );
+    }
+  }
+  //+++++++++++++++++++++
   handleAddContact = ({ name, number }) => {
     const contact = {
       name,
