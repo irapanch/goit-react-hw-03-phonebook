@@ -1,4 +1,4 @@
-# React homework template
+#goit-react-hw-03-phonebook
 
 Створені репозиторії goit-react-hw-03-phonebook і goit-react-hw-03-image-finder
 При здачі домашньої роботи є посилання: на вихідні файли та робочу сторінку проектів на GitHub Pages.
